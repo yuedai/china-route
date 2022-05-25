@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Test</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+</head>
+<script src="https://ssl.captcha.qq.com/TCaptcha.js?20220303"></script>
+<script type="application/javascript">
+// 腾讯防水墙 https://007.qq.com
+window.callback = function(res){
+    console.log(res)
+    // res（用户主动关闭验证码）= {ret: 2, ticket: null}
+    // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+    if(res.ret === 0){
+        alert(res.ticket)   // 票据
+        alert(res.randstr)
+    }
+}
+</script>
+<body onload="submitFormWithCaptcha">
+    <button id="TencentCaptcha"
+    data-appid="2086820410"
+    data-cbfn="callback"
+    type="button"
+>验证</button>
+</body>
+</html>
